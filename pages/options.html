@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velvet Rope — Rules</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="layout">
+    <header class="page-header">
+      <div class="header-brand">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none">
+          <path d="M3 5 L12 19 L21 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="3" y1="5" x2="21" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="brand-name" data-i18n="brandName">VELVET ROPE</div>
+          <div class="brand-sub" data-i18n="brandSub">Access Management</div>
+        </div>
+      </div>
+      <button class="add-btn" id="addRuleBtn">
+        <svg viewBox="0 0 16 16" fill="none" width="13" height="13">
+          <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span data-i18n="addRule">Add Rule</span>
+      </button>
+    </header>
+
+    <div class="content">
+      <!-- Stats bar -->
+      <div class="stats-bar" id="statsBar"></div>
+
+      <!-- Add / Edit form -->
+      <div class="form-card hidden" id="formCard">
+        <div class="form-title" id="formTitle" data-i18n="newRule">New Rule</div>
+        <div class="form-body">
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label" data-i18n="domainPatternLabel">Domain Pattern</label>
+              <input type="text" class="field-input" id="fieldPattern"
+                data-i18n-placeholder="domainPlaceholder"
+                placeholder="e.g. zhihu.com"
+                autocomplete="off" spellcheck="false">
+              <div class="field-hint" data-i18n="subdomainHint">Subdomains are matched automatically.</div>
+            </div>
+            <div class="field field-sm">
+              <label class="field-label" data-i18n="dailyLimitFormLabel">Daily Limit</label>
+              <input type="number" class="field-input" id="fieldLimit" value="5" min="1" max="9999">
+            </div>
+            <div class="field field-sm">
+              <label class="field-label" data-i18n="challengeLabel2">Challenge</label>
+              <select class="field-select" id="fieldPrimeDigits">
+                <option value="1" data-i18n="prime1Easy">1-digit primes (easy)</option>
+                <option value="2" selected data-i18n="prime2Std">2-digit primes (standard)</option>
+                <option value="3" data-i18n="prime3Hard">3-digit primes (hard)</option>
+                <option value="4" data-i18n="prime4Max">4-digit primes (maximum)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="save-btn" id="saveRuleBtn" data-i18n="saveRule">Save Rule</button>
+            <button class="cancel-btn" id="cancelFormBtn" data-i18n="cancelBtn">Cancel</button>
+          </div>
+          <div class="form-error hidden" id="formError"></div>
+        </div>
+      </div>
+
+      <!-- Rules list -->
+      <div class="rules-container" id="rulesContainer">
+        <div class="empty-page" id="emptyPage">
+          <div class="empty-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path d="M6 10 L24 38 L42 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="6" y1="10" x2="42" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="empty-title" data-i18n="emptyTitle">No rules yet.</div>
+          <div class="empty-sub" data-i18n="emptySub">Add a domain rule to start managing your access.</div>
+        </div>
+      </div>
+
+      <!-- Global settings -->
+      <div class="settings-section">
+        <div class="settings-title" data-i18n="globalSettings">GLOBAL SETTINGS</div>
+
+        <!-- Language -->
+        <div class="settings-row">
+          <div class="settings-label">
+            <span data-i18n="languageLabel">Language</span>
+            <span class="settings-hint" data-i18n="languageHint">Interface display language</span>
+          </div>
+          <select class="field-select" id="globalLanguage">
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+          </select>
+        </div>
+
+        <!-- Theme -->
+        <div class="settings-row">
+          <div class="settings-label">
+            <span data-i18n="themeLabel">Theme</span>
+            <span class="settings-hint" data-i18n="themeHint">Color scheme preference</span>
+          </div>
+          <select class="field-select" id="globalTheme">
+            <option value="dark" data-i18n="themeDark">Dark</option>
+            <option value="light" data-i18n="themeLight">Light</option>
+          </select>
+        </div>
+
+        <!-- Default challenge difficulty -->
+        <div class="settings-row">
+          <div class="settings-label">
+            <span data-i18n="defaultDifficulty">Default challenge difficulty</span>
+            <span class="settings-hint" data-i18n="defaultDiffHint">Applied when adding rules via quick-add popup</span>
+          </div>
+          <select class="field-select" id="globalPrimeDigits">
+            <option value="1" data-i18n="prime1Easy">1-digit primes (easy)</option>
+            <option value="2" selected data-i18n="prime2Std">2-digit primes (standard)</option>
+            <option value="3" data-i18n="prime3Hard">3-digit primes (hard)</option>
+            <option value="4" data-i18n="prime4Max">4-digit primes (maximum)</option>
+          </select>
+        </div>
+
+        <!-- Reset -->
+        <div class="settings-row">
+          <div class="settings-label">
+            <span data-i18n="resetUsageData">Reset usage data</span>
+            <span class="settings-hint" data-i18n="resetHint">Clear all today's visit counts (rules remain)</span>
+          </div>
+          <button class="danger-outline-btn" id="resetTodayBtn" data-i18n="resetTodayBtn">Reset Today</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="../shared/prefs.js"></script>
+  <script src="../shared/i18n.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velvet Rope — Access Restricted</title>
+  <link rel="stylesheet" href="blocked.css">
+</head>
+<body>
+  <div class="scene">
+
+    <div class="bg-noise"></div>
+    <div class="bg-vignette"></div>
+
+    <div class="card" id="card">
+
+      <!-- Header -->
+      <div class="header">
+        <div class="brand">
+          <svg class="brand-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M3 5 L12 19 L21 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="3" y1="5" x2="21" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-name" data-i18n="brandName">VELVET ROPE</span>
+        </div>
+        <div class="status-badge" data-i18n="accessRestricted">ACCESS RESTRICTED</div>
+      </div>
+
+      <!-- Rope divider -->
+      <div class="rope-divider">
+        <div class="rope-post left"></div>
+        <div class="rope-line"><div class="rope-texture"></div></div>
+        <div class="rope-post right"></div>
+      </div>
+
+      <!-- Domain info -->
+      <div class="domain-section">
+        <div class="domain-label" data-i18n="blockedDomain">BLOCKED DOMAIN</div>
+        <div class="domain-name" id="domainName">—</div>
+        <div class="visit-counter">
+          <div class="counter-bar-wrap">
+            <div class="counter-bar" id="counterBar"></div>
+          </div>
+          <div class="counter-text" id="counterText">— / — visits today</div>
+        </div>
+      </div>
+
+      <!-- Challenge section -->
+      <div class="challenge-section" id="challengeSection">
+        <div class="challenge-label" data-i18n="challengeLabel">PROVE YOUR INTENT — FACTOR THE PRODUCT</div>
+        <div class="challenge-product">
+          <span class="product-prefix" data-i18n="productPrefix">P₁ × P₂ =</span>
+          <span class="product-value" id="productValue">—</span>
+        </div>
+        <div class="challenge-inputs">
+          <div class="input-group">
+            <input type="number" class="prime-input" id="input1"
+              placeholder="P₁" min="2" autocomplete="off" inputmode="numeric">
+          </div>
+          <div class="input-times">×</div>
+          <div class="input-group">
+            <input type="number" class="prime-input" id="input2"
+              placeholder="P₂" min="2" autocomplete="off" inputmode="numeric">
+          </div>
+        </div>
+        <div class="challenge-hint" id="challengeHint"></div>
+        <button class="verify-btn" id="verifyBtn">
+          <span class="verify-label" data-i18n="verifyBtn">VERIFY</span>
+          <svg class="verify-icon" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8 L7 12 L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Success state -->
+      <div class="success-section hidden" id="successSection">
+        <div class="success-icon">
+          <svg viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M9 16 L14 21 L23 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="success-text" data-i18n="successText">Access granted for this visit.</div>
+        <div class="success-sub" data-i18n="successSub">Redirecting…</div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <a class="footer-link" href="options.html" target="_blank" data-i18n="manageRules">Manage Rules</a>
+        <span class="footer-sep">·</span>
+        <span class="footer-note" data-i18n="resetsAtMidnight">Limits reset at midnight</span>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="../shared/prefs.js"></script>
+  <script src="../shared/i18n.js"></script>
+  <script src="blocked.js"></script>
+</body>
+</html>

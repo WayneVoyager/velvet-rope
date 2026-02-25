@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velvet Rope</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <svg class="brand-icon" viewBox="0 0 24 24" fill="none">
+        <path d="M3 5 L12 19 L21 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="3" y1="5" x2="21" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-name" data-i18n="brandName">VELVET ROPE</span>
+    </div>
+    <button class="icon-btn" id="openOptions" data-i18n-title="manageRules" title="Manage rules">
+      <svg viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Current page section -->
+  <section class="section" id="currentSection">
+    <div class="section-label" data-i18n="currentPage">CURRENT PAGE</div>
+
+    <div class="current-domain" id="currentDomain">—</div>
+
+    <!-- State: has rule -->
+    <div id="stateHasRule" class="hidden">
+      <div class="rule-stats">
+        <div class="stat-bar-wrap">
+          <div class="stat-bar" id="statBar"></div>
+        </div>
+        <div class="stat-text" id="statText">— / — today</div>
+      </div>
+      <div class="rule-controls">
+        <label class="toggle-wrap">
+          <input type="checkbox" id="ruleToggle" class="toggle-input">
+          <span class="toggle-track">
+            <span class="toggle-thumb"></span>
+          </span>
+          <span class="toggle-label" id="toggleLabel" data-i18n="enabled">Enabled</span>
+        </label>
+        <button class="text-btn danger-btn" id="removeRuleBtn" data-i18n="remove">Remove</button>
+      </div>
+    </div>
+
+    <!-- State: no rule -->
+    <div id="stateNoRule" class="hidden">
+      <div class="no-rule-hint" data-i18n="noLimitSet">No limit set for this site.</div>
+      <div class="quick-add" id="quickAdd">
+        <div class="quick-add-row">
+          <div class="input-label" data-i18n="dailyLimitLabel">Daily limit</div>
+          <input type="number" class="limit-input" id="quickLimit"
+            value="5" min="1" max="9999" placeholder="5">
+          <span class="input-suffix" data-i18n="visitsUnit">visits</span>
+        </div>
+        <button class="primary-btn" id="quickAddBtn">
+          <svg viewBox="0 0 16 16" fill="none" width="13" height="13">
+            <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span data-i18n="restrictThisSite">Restrict This Site</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- State: extension page -->
+    <div id="stateExtensionPage" class="hidden">
+      <div class="no-rule-hint muted" data-i18n="extPageMsg">Not applicable on extension pages.</div>
+    </div>
+  </section>
+
+  <!-- Section separator -->
+  <div class="section-sep"></div>
+
+  <!-- All rules overview -->
+  <section class="section section-rules" id="rulesSection">
+    <div class="rules-head">
+      <span class="rules-head-label" data-i18n="allRulesToday">ALL RULES — TODAY</span>
+    </div>
+    <div id="rulesList" class="rules-list">
+      <div class="empty-state" id="emptyRules">
+        <span data-i18n="noRulesMsg">No rules configured.</span>
+        <br>
+        <span class="muted" data-i18n="addRuleHint">Visit a site and add one above.</span>
+      </div>
+    </div>
+  </section>
+
+  <script src="../shared/prefs.js"></script>
+  <script src="../shared/i18n.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
